@@ -1,9 +1,9 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: {{ parameters.agentName }}
+  name: ${{ values.agentName }}
   description: watsonx Orchestrate agent created via Backstage
 spec:
   type: service
-  owner: {{ parameters.owner }}
+  owner: ${{ values.owner }}
   lifecycle: experimental
