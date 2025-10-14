@@ -1,9 +1,9 @@
 spec_version: v1
 kind: native
-name: {{ values.agentName }}
-description: {{ values.description }}
+name: ${{ parameters.agentName }}
+description: ${{ values.description }}
 instructions: "Describe how this agent should behave here."
-llm: {{ values.llmModel }}
+llm: ${{ values.llmModel }}
 style: default
 collaborators: []
 tools: []
