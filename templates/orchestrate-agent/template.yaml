@@ -52,7 +52,7 @@ spec:
       name: Publish to GitHub
       action: publish:github
       input:
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: github.com?owner=${{ parameters.repoOwner }}&repo=${{ parameters.agentName }}
         defaultBranch: main
         repoVisibility: private
 
