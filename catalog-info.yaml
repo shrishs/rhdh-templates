@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: rhdh-templates
+spec:
+  targets:
+    - ./templates/orchestrate-agent/template.yaml
+    # add more templates here

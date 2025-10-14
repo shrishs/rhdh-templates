@@ -1,0 +1,71 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: orchestrate-agent
+  title: Create a watsonx Orchestrate Agent
+  description: A simple Backstage template to scaffold a watsonx Orchestrate ADK agent definition.
+  tags: [watsonx, orchestrate, adk]
+spec:
+  owner: platform-team
+  type: service
+
+  parameters:
+    - title: Agent information
+      required: [agentName, description]
+      properties:
+        agentName:
+          title: Agent Name
+          type: string
+          description: Name of the agent (e.g., hello-agent)
+        description:
+          title: Description
+          type: string
+          description: What does this agent do?
+        llmModel:
+          title: Choose LLM
+          type: string
+          enum: [watsonx/meta-llama/llama-3-2-90b-vision-instruct, watsonx/granite-13b-chat-v2]
+          default: watsonx/meta-llama/llama-3-2-90b-vision-instruct
+        owner:
+          title: Owner
+          type: string
+          description: Backstage owner entity (e.g., group:platform)
+        repoUrl:
+          title: Repository
+          type: string
+          description: github.com?owner=your-org&repo={{ parameters.agentName }}
+
+  steps:
+    - id: fetch
+      name: Fetch skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          agentName: ${{ parameters.agentName }}
+          description: ${{ parameters.description }}
+          llmModel: ${{ parameters.llmModel }}
+          owner: ${{ parameters.owner }}
+          repoUrl: ${{ parameters.repoUrl }}
+
+    - id: publish
+      name: Publish to GitHub
+      action: publish:github
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        defaultBranch: main
+        repoVisibility: private
+
+    - id: register
+      name: Register in Backstage
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: Backstage entity
+        url: ${{ steps.register.output.entityRef }}
