@@ -1,11 +1,11 @@
-# {{ values.agentName }}
+# ${{ values.agentName }}
 
 This repository defines a watsonx Orchestrate agent using the **Agent Development Kit (ADK)**.
 
 ## 🧠 Agent info
-- **Name:** {{ values.agentName }}
-- **Description:** {{ values.description }}
-- **LLM:** {{ values.llmModel }}
+- **Name:** ${{ values.agentName }}
+- **Description:** ${{ values.description }}
+- **LLM:** ${{ values.llmModel }}
 
 ## 🚀 Quick start
 To import this agent into your local Orchestrate Developer Edition:
