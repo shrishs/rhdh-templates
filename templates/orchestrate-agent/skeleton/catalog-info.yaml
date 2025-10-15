@@ -4,6 +4,6 @@ metadata:
   name: ${{ values.agentName }}
   description: watsonx Orchestrate agent created via Backstage
 spec:
-  type: service
+  type: agent
   owner: ${{ values.owner }}
   lifecycle: experimental
