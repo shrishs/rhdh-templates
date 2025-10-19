@@ -6,8 +6,11 @@ metadata:
   description: A simple Backstage template to scaffold a watsonx Orchestrate ADK agent definition.
   tags: [watsonx, orchestrate, adk]
 spec:
-  owner: platform-team
-  type: service
+  type: template
+  lifecycle: development
+  owner: group:platform-ai
+  system: ai-agent
+  
 
   parameters:
     - title: Agent information
@@ -26,6 +29,11 @@ spec:
           type: string
           enum: [watsonx/meta-llama/llama-3-2-90b-vision-instruct, watsonx/granite-13b-chat-v2]
           default: watsonx/meta-llama/llama-3-2-90b-vision-instruct
+        lifecycle:
+          title: Choose Environment
+          type: string
+          enum: [development, staging ,production]
+          default: development          
         owner:
           title: Owner
           type: string

@@ -6,4 +6,5 @@ metadata:
 spec:
   type: agent
   owner: ${{ values.owner }}
-  lifecycle: experimental
+  lifecycle: ${{ values.lifecycle }} 
+  system: ai-agent
