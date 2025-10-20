@@ -53,6 +53,7 @@ spec:
           agentName: ${{ parameters.agentName }}
           description: ${{ parameters.description }}
           llmModel: ${{ parameters.llmModel }}
+          lifecycle: ${{ parameters.lifecycle }}
           owner: ${{ parameters.owner }}
           repoUrl: ${{ parameters.repoUrl }}
 
