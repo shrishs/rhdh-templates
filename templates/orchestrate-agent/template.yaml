@@ -44,6 +44,16 @@ spec:
               kind: Component
               spec.type: mcp-server
             defaultKind: Component
+        model:
+          title: Choose Model
+          type: string
+          description: Select an available model from the catalog
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Resource
+              spec.type: model
+            defaultKind: Resource
         owner:
           title: Owner
           type: string
@@ -64,6 +74,8 @@ spec:
           description: ${{ parameters.description }}
           llmModel: ${{ parameters.llmModel }}
           lifecycle: ${{ parameters.lifecycle }}
+          mcpServer: ${{ parameters.mcpServer }}
+          model: ${{ parameters.model }}
           owner: ${{ parameters.owner }}
           repoUrl: ${{ parameters.repoUrl }}
 
