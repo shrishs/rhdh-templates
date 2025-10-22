@@ -33,7 +33,17 @@ spec:
           title: Choose Environment
           type: string
           enum: [development, staging ,production]
-          default: development          
+          default: development
+        mcpServer:
+          title: Choose MCP Server
+          type: string
+          description: Select an available MCP server from the catalog
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Component
+              spec.type: mcp-server
+            defaultKind: Component
         owner:
           title: Owner
           type: string
