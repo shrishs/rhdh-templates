@@ -64,13 +64,6 @@ spec:
           description: github.com?owner=your-org&repo={{ parameters.agentName }}
 
   steps:
-    - id: fetchMcpTools
-      name: Fetch MCP Tools
-      action: mcp:fetch-tools
-      input:
-        mcpServerUrl: http://localhost:7007/api/mcp-actions/v1
-        authToken: hrqS0811rDm90OfV8QFX5zjRe/xkJkoG
-
     - id: fetch
       name: Fetch skeleton
       action: fetch:template
@@ -83,7 +76,6 @@ spec:
           lifecycle: ${{ parameters.lifecycle }}
           mcpServer: ${{ parameters.mcpServer }}
           model: ${{ parameters.model }}
-          mcpTools: ${{ steps.fetchMcpTools.output.tools }}
           owner: ${{ parameters.owner }}
           repoUrl: ${{ parameters.repoUrl }}
 
