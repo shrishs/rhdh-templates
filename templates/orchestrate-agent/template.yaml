@@ -52,7 +52,7 @@ spec:
           ui:options:
             catalogFilter:
               kind: Resource
-              spec.type: model
+              spec.type: ai-model
             defaultKind: Resource
         owner:
           title: Owner
