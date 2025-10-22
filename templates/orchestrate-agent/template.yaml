@@ -24,11 +24,11 @@ spec:
           title: Description
           type: string
           description: What does this agent do?
-        llmModel:
-          title: Choose LLM
-          type: string
-          enum: [watsonx/meta-llama/llama-3-2-90b-vision-instruct, watsonx/granite-13b-chat-v2]
-          default: watsonx/meta-llama/llama-3-2-90b-vision-instruct
+        # llmModel:
+        #   title: Choose LLM
+        #   type: string
+        #   enum: [watsonx/meta-llama/llama-3-2-90b-vision-instruct, watsonx/granite-13b-chat-v2]
+        #   default: watsonx/meta-llama/llama-3-2-90b-vision-instruct
         lifecycle:
           title: Choose Environment
           type: string
@@ -64,6 +64,13 @@ spec:
           description: github.com?owner=your-org&repo={{ parameters.agentName }}
 
   steps:
+    - id: fetchMcpTools
+      name: Fetch MCP Tools
+      action: mcp:fetch-tools
+      input:
+        mcpServerUrl: http://localhost:7007/api/mcp-actions/v1
+        authToken: hrqS0811rDm90OfV8QFX5zjRe/xkJkoG
+
     - id: fetch
       name: Fetch skeleton
       action: fetch:template
@@ -72,10 +79,11 @@ spec:
         values:
           agentName: ${{ parameters.agentName }}
           description: ${{ parameters.description }}
-          llmModel: ${{ parameters.llmModel }}
+          # llmModel: ${{ parameters.llmModel }}
           lifecycle: ${{ parameters.lifecycle }}
           mcpServer: ${{ parameters.mcpServer }}
           model: ${{ parameters.model }}
+          mcpTools: ${{ steps.fetchMcpTools.output.tools }}
           owner: ${{ parameters.owner }}
           repoUrl: ${{ parameters.repoUrl }}
 
