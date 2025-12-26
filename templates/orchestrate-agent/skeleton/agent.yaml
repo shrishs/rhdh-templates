@@ -2,8 +2,16 @@ spec_version: v1
 kind: native
 name: ${{ values.agentName }}
 description: ${{ values.description }}
-instructions: "Describe how this agent should behave here."
-llm: ${{ values.llmModel }}
+instructions: "This agent uses ${{ values.mcpServer }} with available tools: {% for tool in values.mcpTools %}{{ tool.name }}{% if not loop.last %}, {% endif %}{% endfor %}"
+llm: ${{ values.model }}
+mcp_server: ${{ values.mcpServer }}
+lifecycle: ${{ values.lifecycle }}
 style: default
 collaborators: []
-tools: []
+tools:
+{% for tool in values.mcpTools %}
+  - name: {{ tool.name }}
+    description: {{ tool.description | replace('\n', ' ') }}
+    type: mcp
+    server: ${{ values.mcpServer }}
+{% endfor %}
